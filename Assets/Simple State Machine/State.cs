@@ -1,14 +1,23 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public abstract class State : MonoBehaviour
+public class State : MonoBehaviour
 {
-    public abstract void EnterState();
+    public virtual void EnterState() 
+    {
+        Debug.Log($"Entered {gameObject.name.Replace("State", string.Empty)} State.");
+    }
 
-    public abstract State UpdateState();
+    public virtual State UpdateState()
+    {
+        Debug.Log($"Inside {gameObject.name.Replace("State", string.Empty)} State...");
 
-    public abstract void ExitState();
+        return this;
+    }
+
+    public virtual void ExitState()
+    {
+        Debug.Log($"Exited {gameObject.name.Replace("State", string.Empty)} State.");
+    }
 }
 
 
@@ -17,7 +26,7 @@ public abstract class State : MonoBehaviour
 
 //1 - Create a new script
 //2 - Make it inherit from this class
-//3 - Override the functions
+//3 - Override the functions that you need
 //4 - Type the logic you need in each function
 //5 - In the State Machine Game Object create a child and add the new state's script to it
 //6 - If new state is the first state to run add the state's game object to StateMachine's startingState reference →
