@@ -22,21 +22,44 @@ public class State : MonoBehaviour
 
 
 
-//Tutorial - How to create a new state:
+
+
+//Tutorial - How to create a new state (English version):
 
 //1 - Create a new script
 //2 - Make it inherit from this class
 //3 - Override the functions that you need
-//4 - Type the logic you need in each function
+//4 - Define the behavior of each function
 //5 - In the State Machine Game Object create a child and add the new state's script to it
 //6 - If new state is the first state to run add the state's game object to StateMachine's startingState reference →
-//  → If not you have to write logic in the first state to switch to the new state
+//  → If not you have to write logic in a different state to switch to the new state
 
 
 //Example of a simple, organized Unity Game Object Hierarchy:
 
 // ➤ "Game Object Name" (Player, Game Manager, etc...) (you can put the State Machine script here)
 //  ➤ States (Empty Game Object to group the States)
-//   ➤ Idle State (Example of State)
-//   ➤ Move State (Example of State)
+//   ➤ Idle State
+//   ➤ Move State
+//   ...
+
+
+
+//使い方 - 新しい状態の作り方（日本語版）：
+
+//１ - 新しいスクリプトを作成してください
+//２ - そのスクリプトをこのクラスから引き継がさせてください
+//３ - 必要な関数をオーバーライドしてください
+//４ - 各関数の内容を書いてください
+//５ - 状態機械のゲームオブジェクトに子を作成して、新しい状態のスクリプトを付けてください
+//６ - もしこの状態はゲームが起動後に最初に実行状態だったら状態機械のゲームオブジェクトにこの状態を参照してください →
+//  → その場合なければ別の状態からこの状態への切り替え処理を書かなければなりません
+
+
+//シンプルでわかりやすいUnityのゲームオブジェクトのHierarchy：
+
+// ➤ 「ゲームオブジェクトの名前」（Player, Game Managerなど）（状態機械のスクリプトをここに付けてもいいです）
+//  ➤ States (各状態はこのゲームオブジェクトの子になります)
+//   ➤ Idle State (状態)
+//   ➤ Move State (状態)
 //   ...
