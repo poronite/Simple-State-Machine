@@ -1,24 +1,29 @@
 ﻿using UnityEngine;
 
-public class State : MonoBehaviour
+namespace SimpleStateMachine
 {
-    public virtual void EnterState() 
+    public class State : MonoBehaviour
     {
-        Debug.Log($"Entered {gameObject.name.Replace("State", string.Empty)} State.");
-    }
+        public virtual void EnterState()
+        {
+            Debug.Log($"Entered {gameObject.name.Replace("State", string.Empty)} State.");
+        }
 
-    public virtual State UpdateState()
-    {
-        Debug.Log($"Inside {gameObject.name.Replace("State", string.Empty)} State...");
+        public virtual State UpdateState()
+        {
+            Debug.Log($"Inside {gameObject.name.Replace("State", string.Empty)} State...");
 
-        return this;
-    }
+            return this;
+        }
 
-    public virtual void ExitState()
-    {
-        Debug.Log($"Exited {gameObject.name.Replace("State", string.Empty)} State.");
+        public virtual void ExitState()
+        {
+            Debug.Log($"Exited {gameObject.name.Replace("State", string.Empty)} State.");
+        }
     }
 }
+
+
 
 
 
@@ -27,11 +32,12 @@ public class State : MonoBehaviour
 //Tutorial - How to create a new state (English version):
 
 //1 - Create a new script
-//2 - Make it inherit from this class
-//3 - Override the functions that you need
-//4 - Define the behavior of each function
-//5 - In the State Machine Game Object create a child and add the new state's script to it
-//6 - If new state is the first state to run add the state's game object to StateMachine's startingState reference →
+//2 - Add a using directive for the SimpleStateMachine namespace at the top of the script
+//3 - Make the script inherit from this class
+//4 - Override the functions that you need
+//5 - Define the behavior of each function
+//6 - In the State Machine Game Object create a child and add the new state's script to it
+//7 - If new state is the first state to run add the state's game object to StateMachine's startingState reference →
 //  → If not you have to write logic in a different state to switch to the new state
 
 
@@ -48,11 +54,12 @@ public class State : MonoBehaviour
 //使い方 - 新しい状態の作り方（日本語版）：
 
 //１ - 新しいスクリプトを作成してください
-//２ - そのスクリプトをこのクラスから引き継がさせてください
-//３ - 必要な関数をオーバーライドしてください
-//４ - 各関数の内容を書いてください
-//５ - 状態機械のゲームオブジェクトに子を作成して、新しい状態のスクリプトを付けてください
-//６ - もしこの状態はゲームが起動後に最初に実行状態だったら状態機械のゲームオブジェクトにこの状態を参照してください →
+//２ - スクリプトの先頭に「using SimpleStateMachine;」を追加してください
+//３ - スクリプトをこのクラスから引き継がさせてください
+//４ - 必要な関数をオーバーライドしてください
+//５ - 各関数の内容を書いてください
+//６ - 状態機械のゲームオブジェクトに子を作成して、新しい状態のスクリプトを付けてください
+//７ - もしこの状態はゲームが起動後に最初に実行状態だったら状態機械のゲームオブジェクトにこの状態を参照してください →
 //  → その場合なければ別の状態からこの状態への切り替え処理を書かなければなりません
 
 

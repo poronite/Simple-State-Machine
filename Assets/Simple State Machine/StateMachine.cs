@@ -1,59 +1,64 @@
 ﻿using UnityEngine;
 
-public class StateMachine : MonoBehaviour
+namespace SimpleStateMachine
 {
-    [SerializeField]
-    private State startingState;
-
-    private State currentState;
-
-    private void Start()
+    public class StateMachine : MonoBehaviour
     {
-        StartStateMachine();
-    }
+        [SerializeField]
+        private State startingState;
 
-    //It doesn't actually start the state machine but by changing the currentState →
-    // → UpdateStateMachine function switches states
-    private void StartStateMachine()
-    {
-        currentState = startingState;
-    }
+        private State currentState;
 
-    private void Update()
-    {
-        UpdateStateMachine();
-    }
-
-    private void UpdateStateMachine()
-    {
-        //If there is a state update it and store the value that it returns
-        State nextState = currentState?.UpdateState();
-
-        //If the value that it returns is different from the current state →
-        // → it means that the state has changed
-        if (nextState != null && currentState != nextState)
+        private void Start()
         {
-            SwitchState(nextState);
+            StartStateMachine();
+        }
+
+        //It doesn't actually start the state machine but by changing the currentState →
+        // → UpdateStateMachine function switches states
+        private void StartStateMachine()
+        {
+            currentState = startingState;
+        }
+
+        private void Update()
+        {
+            UpdateStateMachine();
+        }
+
+        private void UpdateStateMachine()
+        {
+            //If there is a state update it and store the value that it returns
+            State nextState = currentState?.UpdateState();
+
+            //If the value that it returns is different from the current state →
+            // → it means that the state has changed
+            if (nextState != null && currentState != nextState)
+            {
+                SwitchState(nextState);
+            }
+        }
+
+        //Exit current state before switching state → Switch state → enter in new state
+        private void SwitchState(State nextState)
+        {
+            currentState.ExitState();
+
+            currentState = nextState;
+
+            currentState.EnterState();
+        }
+
+
+        //Debug - can ignore this
+        public State GetCurrentStateDebug()
+        {
+            return currentState;
         }
     }
-
-    //Exit current state before switching state → Switch state → enter in new state
-    private void SwitchState(State nextState)
-    {
-        currentState.ExitState();
-
-        currentState = nextState;
-
-        currentState.EnterState();
-    }
-
-
-    //Debug - can ignore this
-    public State GetCurrentStateDebug()
-    {
-        return currentState;
-    }
 }
+
+
 
 
 
